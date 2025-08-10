@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if get_locale() == 'zh' %}登录 - 大学腾飞营论坛{% else %}Login - University Forum{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+        <div class="card">
+            <div class="card-header text-center">
+                <h4 class="mb-0">
+                    {% if get_locale() == 'zh' %}
+                        <i class="fas fa-sign-in-alt me-2"></i>用户登录
+                    {% else %}
+                        <i class="fas fa-sign-in-alt me-2"></i>User Login
+                    {% endif %}
+                </h4>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">
+                            {% if get_locale() == 'zh' %}用户名{% else %}Username{% endif %}
+                        </label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="password" class="form-label">
+                            {% if get_locale() == 'zh' %}密码{% else %}Password{% endif %}
+                        </label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">
+                            {% if get_locale() == 'zh' %}
+                                <i class="fas fa-sign-in-alt me-1"></i>登录
+                            {% else %}
+                                <i class="fas fa-sign-in-alt me-1"></i>Login
+                            {% endif %}
+                        </button>
+                    </div>
+                </form>
+                
+                <hr>
+                
+                <div class="text-center">
+                    <p class="text-muted mb-0">
+                        {% if get_locale() == 'zh' %}
+                            还没有账号？
+                        {% else %}
+                            Don't have an account?
+                        {% endif %}
+                        <a href="{{ url_for('register') }}" class="text-decoration-none">
+                            {% if get_locale() == 'zh' %}立即注册{% else %}Register now{% endif %}
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

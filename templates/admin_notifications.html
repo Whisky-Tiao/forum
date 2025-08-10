@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if get_locale() == 'zh' %}发送通知 - 大学腾飞营论坛{% else %}Send Notifications - University Forum{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">
+                    {% if get_locale() == 'zh' %}
+                        <i class="fas fa-bell me-2"></i>发送通知
+                    {% else %}
+                        <i class="fas fa-bell me-2"></i>Send Notifications
+                    {% endif %}
+                </h4>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">
+                            {% if get_locale() == 'zh' %}通知标题{% else %}Notification Title{% endif %}
+                        </label>
+                        <input type="text" class="form-control" id="title" name="title" required
+                               placeholder="{% if get_locale() == 'zh' %}请输入通知标题{% else %}Enter notification title{% endif %}">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="content" class="form-label">
+                            {% if get_locale() == 'zh' %}通知内容{% else %}Notification Content{% endif %}
+                        </label>
+                        <textarea class="form-control" id="content" name="content" rows="5" required
+                                  placeholder="{% if get_locale() == 'zh' %}请输入通知内容...{% else %}Enter notification content...{% endif %}"></textarea>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="user_id" class="form-label">
+                            {% if get_locale() == 'zh' %}发送给{% else %}Send to{% endif %}
+                        </label>
+                        <select class="form-select" id="user_id" name="user_id">
+                            <option value="all">
+                                {% if get_locale() == 'zh' %}所有用户{% else %}All Users{% endif %}
+                            </option>
+                            {% for user in users %}
+                            <option value="{{ user[0] }}">{{ user[1] }}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="form-text">
+                            {% if get_locale() == 'zh' %}
+                                选择"所有用户"将通知发送给所有注册用户，或选择特定用户
+                            {% else %}
+                                Select "All Users" to send notification to all registered users, or choose a specific user
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ url_for('index') }}" class="btn btn-secondary">
+                            {% if get_locale() == 'zh' %}
+                                <i class="fas fa-arrow-left me-1"></i>返回
+                            {% else %}
+                                <i class="fas fa-arrow-left me-1"></i>Back
+                            {% endif %}
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            {% if get_locale() == 'zh' %}
+                                <i class="fas fa-paper-plane me-1"></i>发送通知
+                            {% else %}
+                                <i class="fas fa-paper-plane me-1"></i>Send Notification
+                            {% endif %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Notification Guidelines -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    {% if get_locale() == 'zh' %}
+                        <i class="fas fa-info-circle me-2"></i>通知发送指南
+                    {% else %}
+                        <i class="fas fa-info-circle me-2"></i>Notification Guidelines
+                    {% endif %}
+                </h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        {% if get_locale() == 'zh' %}
+                            重要活动通知和提醒
+                        {% else %}
+                            Important activity notifications and reminders
+                        {% endif %}
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        {% if get_locale() == 'zh' %}
+                            系统维护和更新信息
+                        {% else %}
+                            System maintenance and update information
+                        {% endif %}
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        {% if get_locale() == 'zh' %}
+                            学习资源和活动推荐
+                        {% else %}
+                            Learning resources and activity recommendations
+                        {% endif %}
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        {% if get_locale() == 'zh' %}
+                            保持通知内容简洁明了
+                        {% else %}
+                            Keep notification content concise and clear
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

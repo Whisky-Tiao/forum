@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if get_locale() == 'zh' %}编辑帖子 - 大学腾飞营论坛{% else %}Edit Post - University Forum{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">
+                    {% if get_locale() == 'zh' %}
+                        <i class="fas fa-edit me-2"></i>编辑帖子
+                    {% else %}
+                        <i class="fas fa-edit me-2"></i>Edit Post
+                    {% endif %}
+                </h4>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">
+                            {% if get_locale() == 'zh' %}标题{% else %}Title{% endif %}
+                        </label>
+                        <input type="text" class="form-control" id="title" name="title" value="{{ post[1] }}" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="content" class="form-label">
+                            {% if get_locale() == 'zh' %}内容{% else %}Content{% endif %}
+                        </label>
+                        <textarea class="form-control" id="content" name="content" rows="10" required>{{ post[2] }}</textarea>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="tags" class="form-label">
+                            {% if get_locale() == 'zh' %}标签{% else %}Tags{% endif %}
+                        </label>
+                        <input type="text" class="form-control" id="tags" name="tags" value="{{ post[3] or '' }}">
+                        <div class="form-text">
+                            {% if get_locale() == 'zh' %}
+                                标签用逗号分隔
+                            {% else %}
+                                Tags separated by commas
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ url_for('view_post', post_id=post[0]) }}" class="btn btn-secondary">
+                            {% if get_locale() == 'zh' %}
+                                <i class="fas fa-times me-1"></i>取消
+                            {% else %}
+                                <i class="fas fa-times me-1"></i>Cancel
+                            {% endif %}
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            {% if get_locale() == 'zh' %}
+                                <i class="fas fa-save me-1"></i>保存修改
+                            {% else %}
+                                <i class="fas fa-save me-1"></i>Save Changes
+                            {% endif %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
